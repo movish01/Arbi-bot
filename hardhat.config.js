@@ -1,6 +1,6 @@
 require("@nomiclabs/hardhat-waffle");
 require("dotenv").config();
-const ALCHEMY_API_KEY = process.env.ALCHEMY_API_KEY;
+const ALCHEMY_API_KEY = String(process.env.ALCHEMY_API_KEY);
 
 module.exports = {
   defaultNetwork: "hardhat",
@@ -39,8 +39,9 @@ module.exports = {
     hardhat: {
       forking: {
         url: `https://eth-mainnet.alchemyapi.io/v2/${ALCHEMY_API_KEY}`,
+        // blockNumber: 14451305,
       },
-      chainId: 137,
+      chainId: 1,
     },
     // mainnet: {
     //   url: `https://eth-mainnet.alchemyapi.io/v2/${ALCHEMY_API_KEY}`,
@@ -51,6 +52,6 @@ module.exports = {
   //   apiKey: process.env.ETHERSCAN,
   // },
   mocha: {
-    timeout: 10000 * 1000
-  }
+    timeout: 10000 * 1000,
+  },
 };

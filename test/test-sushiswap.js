@@ -7,7 +7,7 @@ const WBTC = "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2";
 const AMOUNT_IN = "1000000000000000000";
 const AMOUNT_OUT_MIN = 0;
 
-let testUniswap;
+let testSushiswap;
 
 const ABI = [
   {
@@ -46,11 +46,11 @@ const ABI = [
 
 describe("Swap:  ", async function () {
   it("Should deploy", async function () {
-    const TestUniswap = await ethers.getContractFactory("TestUniswap");
-    testUniswap = await TestUniswap.deploy();
-    await testUniswap.deployed();
+    const TestSushiswap = await ethers.getContractFactory("TestSushiswap");
+    testSushiswap = await TestSushiswap.deploy();
+    await testSushiswap.deployed();
 
-    console.log("Deployed at", testUniswap.address);
+    console.log("Deployed at", testSushiswap.address);
   });
   it("Should swap", async function () {
     await hre.network.provider.request({
@@ -69,9 +69,9 @@ describe("Swap:  ", async function () {
 
     const tx = await token_wbtc
       .connect(wbtc_signer)
-      .approve(testUniswap.address, AMOUNT_IN);
+      .approve(testSushiswap.address, AMOUNT_IN);
 
-    await testUniswap
+    await testSushiswap
       .connect(wbtc_signer)
       .swap(WBTC, DAI, AMOUNT_IN, AMOUNT_OUT_MIN, WBTC_WHALE);
   });
